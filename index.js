@@ -1,10 +1,11 @@
 const { createWorker, createScheduler } = require('tesseract.js');
 const sharp = require('sharp');
+const { handleExerciseRecognitionData } = require('./helpers/format-helper');
 
 const file = './Ring-Fit-Adventure-week-3-exercise-log.jpg';
 const rectangles = {
   date: { left: 440, top: 45, width: 100, height: 40 },
-  dayOfWeek: { left: 545, top: 45, width: 135, height: 40 },
+  // dayOfWeek: { left: 545, top: 45, width: 135, height: 40 }, (useless since retrieved with date)
   time: { left: 450, top: 120, width: 190, height: 35 },
   calorie: { left: 670, top: 120, width: 190, height: 35 },
   distance: { left: 890, top: 120, width: 190, height: 35 },
@@ -31,16 +32,18 @@ const chainAsyncExecutions = (array, f) =>
 
   const negatedPicture = await sharp(file).negate().greyscale().toBuffer();
 
-  let results = [];
+  const exercises = [];
   for (let i = 0; i < AMOUNT_OF_RESULTS; i += 1) {
-    results = Promise.all(
+    const exerciseRecognition = await Promise.all(
       Object.values(rectangles).map(rectangle =>
         scheduler.addJob('recognize', negatedPicture, {
           rectangle: { ...rectangle, top: rectangle.top + i * HEIGHT_BETWEEN_RESULTS },
         }),
       ),
     );
+    exercises.push(handleExerciseRecognitionData(exerciseRecognition));
   }
+  console.log(exercises);
 
   await scheduler.terminate();
 })();
