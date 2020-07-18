@@ -4,5 +4,15 @@
   "description": "A set of tools for Ring Fit Adventure.",
   "main": "index.js",
   "author": "Kévin Cocchi <kevin.cocchi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.0.5",
+    "prettier-eslint": "^11.0.0"
+  }
 }
