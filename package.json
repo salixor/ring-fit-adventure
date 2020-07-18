@@ -6,6 +6,7 @@
   "author": "Kévin Cocchi <kevin.cocchi@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "sharp": "^0.25.4",
     "tesseract.js": "^2.1.1"
   },
   "devDependencies": {
