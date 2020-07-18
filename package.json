@@ -1,0 +1,8 @@
+{
+  "name": "ring-fit-adventure",
+  "version": "1.0.0",
+  "description": "A set of tools for Ring Fit Adventure.",
+  "main": "index.js",
+  "author": "Kévin Cocchi <kevin.cocchi@gmail.com>",
+  "license": "MIT"
+}
